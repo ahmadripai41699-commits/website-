@@ -1,0 +1,970 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Formulir Biodata Mahasiswa</title>
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+            font-family: Arial, sans-serif;
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 30px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0f172a,
+                    #1e3a8a,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            background-size: 400% 400%;
+
+            animation: gradient 12s ease infinite;
+        }
+
+
+        /* Animasi background */
+
+        @keyframes gradient {
+
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+
+        }
+
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .form-container {
+
+            width: 650px;
+            max-width: 100%;
+
+            background: rgba(255, 255, 255, 0.95);
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, 0.35);
+
+            animation: muncul 0.8s ease;
+        }
+
+
+        @keyframes muncul {
+
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+
+            padding: 30px;
+
+            text-align: center;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            position: relative;
+        }
+
+
+        .header h1 {
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .header p {
+
+            font-size: 14px;
+
+            opacity: 0.9;
+
+        }
+
+
+        /* Garis dekorasi */
+
+        .header::after {
+
+            content: "";
+
+            position: absolute;
+
+            bottom: 0;
+            left: 10%;
+
+            width: 80%;
+            height: 4px;
+
+            background: white;
+
+            border-radius: 20px;
+
+            opacity: 0.7;
+        }
+
+
+        /* =========================
+           FORM BODY
+        ========================= */
+
+        .form-body {
+
+            padding: 30px;
+        }
+
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        table {
+
+            width: 100%;
+
+            border-collapse: separate;
+
+            border-spacing: 0 15px;
+        }
+
+
+        td {
+
+            padding: 5px;
+        }
+
+
+        .label {
+
+            width: 170px;
+
+            font-weight: bold;
+
+            color: #1e293b;
+
+            vertical-align: top;
+
+            padding-top: 13px;
+        }
+
+
+        /* =========================
+           INPUT
+        ========================= */
+
+        input[type="text"],
+        textarea,
+        select {
+
+            width: 100%;
+
+            padding: 12px 15px;
+
+            border: 2px solid #e2e8f0;
+
+            border-radius: 12px;
+
+            background: #f8fafc;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.3s;
+        }
+
+
+        input[type="text"] {
+
+            height: 45px;
+        }
+
+
+        textarea {
+
+            height: 100px;
+
+            resize: vertical;
+        }
+
+
+        select {
+
+            height: 45px;
+
+            cursor: pointer;
+        }
+
+
+        /* Efek saat input dipilih */
+
+        input[type="text"]:focus,
+        textarea:focus,
+        select:focus {
+
+            border-color: #6366f1;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 4px rgba(99, 102, 241, 0.15);
+        }
+
+
+        /* =========================
+           RADIO & CHECKBOX
+        ========================= */
+
+        .option {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-bottom: 10px;
+
+            cursor: pointer;
+
+            color: #334155;
+        }
+
+
+        input[type="radio"],
+        input[type="checkbox"] {
+
+            width: 18px;
+
+            height: 18px;
+
+            accent-color: #6366f1;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .button {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            margin-top: 20px;
+        }
+
+
+        button {
+
+            border: none;
+
+            padding: 13px 28px;
+
+            border-radius: 12px;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .btn-proses {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #7c3aed
+                );
+
+            box-shadow:
+                0 8px 20px rgba(37, 99, 235, 0.3);
+        }
+
+
+        .btn-reset {
+
+            color: #334155;
+
+            background: #e2e8f0;
+        }
+
+
+        button:hover {
+
+            transform: translateY(-3px);
+
+        }
+
+
+        .btn-proses:hover {
+
+            box-shadow:
+                0 12px 25px rgba(37, 99, 235, 0.45);
+        }
+
+
+        .btn-reset:hover {
+
+            background: #cbd5e1;
+        }
+
+
+        /* =========================
+           HASIL DATA
+        ========================= */
+
+        #hasil {
+
+            display: none;
+
+            margin-top: 25px;
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            background: #f1f5f9;
+
+            border-left: 5px solid #6366f1;
+
+            animation: hasilMuncul 0.5s ease;
+        }
+
+
+        @keyframes hasilMuncul {
+
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+        }
+
+
+        #hasil h2 {
+
+            color: #4f46e5;
+
+            margin-bottom: 15px;
+        }
+
+
+        .data {
+
+            line-height: 1.8;
+
+            color: #334155;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+
+            text-align: center;
+
+            padding: 18px;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            border-top: 1px solid #e2e8f0;
+        }
+
+
+        /* =========================
+           RESPONSIVE HP
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            body {
+
+                padding: 15px;
+
+            }
+
+
+            .form-body {
+
+                padding: 20px;
+
+            }
+
+
+            .header {
+
+                padding: 25px 15px;
+
+            }
+
+
+            .header h1 {
+
+                font-size: 24px;
+
+            }
+
+
+            table,
+            tbody,
+            tr,
+            td {
+
+                display: block;
+
+                width: 100%;
+            }
+
+
+            .label {
+
+                padding-top: 0;
+
+                margin-bottom: 5px;
+            }
+
+
+            td {
+
+                padding: 5px 0;
+            }
+
+
+            .button {
+
+                flex-direction: column;
+            }
+
+
+            button {
+
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="form-container">
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <div class="header">
+
+        <h1>📋 Formulir Biodata</h1>
+
+        <p>Silakan isi data mahasiswa dengan lengkap</p>
+
+    </div>
+
+
+    <!-- =========================
+         FORM
+    ========================== -->
+
+    <div class="form-body">
+
+        <form id="biodataForm">
+
+
+            <table>
+
+
+                <!-- NPM -->
+
+                <tr>
+
+                    <td class="label">
+                        NPM
+                    </td>
+
+                    <td>
+
+                        <input
+                            type="text"
+                            id="npm"
+                            placeholder="Masukkan NPM"
+                        >
+
+                    </td>
+
+                </tr>
+
+
+                <!-- NAMA -->
+
+                <tr>
+
+                    <td class="label">
+                        Nama Mahasiswa
+                    </td>
+
+                    <td>
+
+                        <input
+                            type="text"
+                            id="nama"
+                            placeholder="Masukkan nama lengkap"
+                        >
+
+                    </td>
+
+                </tr>
+
+
+                <!-- ALAMAT -->
+
+                <tr>
+
+                    <td class="label">
+                        Alamat
+                    </td>
+
+                    <td>
+
+                        <textarea
+                            id="alamat"
+                            placeholder="Masukkan alamat lengkap"
+                        ></textarea>
+
+                    </td>
+
+                </tr>
+
+
+                <!-- SEX -->
+
+                <tr>
+
+                    <td class="label">
+                        Jenis Kelamin
+                    </td>
+
+                    <td>
+
+                        <select id="sex">
+
+                            <option value="">
+                                -- Pilih Jenis Kelamin --
+                            </option>
+
+                            <option value="Laki-laki">
+                                Laki-laki
+                            </option>
+
+                            <option value="Perempuan">
+                                Perempuan
+                            </option>
+
+                        </select>
+
+                    </td>
+
+                </tr>
+
+
+                <!-- JENJANG -->
+
+                <tr>
+
+                    <td class="label">
+                        Jenjang Studi
+                    </td>
+
+                    <td>
+
+                        <label class="option">
+
+                            <input
+                                type="radio"
+                                name="jenjang"
+                                value="Strata 1"
+                            >
+
+                            Strata 1
+
+                        </label>
+
+
+                        <label class="option">
+
+                            <input
+                                type="radio"
+                                name="jenjang"
+                                value="Diploma III"
+                            >
+
+                            Diploma III
+
+                        </label>
+
+                    </td>
+
+                </tr>
+
+
+                <!-- KONSENTRASI -->
+
+                <tr>
+
+                    <td class="label">
+                        Konsentrasi
+                    </td>
+
+                    <td>
+
+                        <label class="option">
+
+                            <input
+                                type="checkbox"
+                                name="konsentrasi"
+                                value="Teknik Informatika"
+                            >
+
+                            Teknik Informatika
+
+                        </label>
+
+
+                        <label class="option">
+
+                            <input
+                                type="checkbox"
+                                name="konsentrasi"
+                                value="Sistem Informasi"
+                            >
+
+                            Sistem Informasi
+
+                        </label>
+
+
+                        <label class="option">
+
+                            <input
+                                type="checkbox"
+                                name="konsentrasi"
+                                value="Bisnis Digital"
+                            >
+
+                            Bisnis Digital
+
+                        </label>
+
+                    </td>
+
+                </tr>
+
+
+            </table>
+
+
+            <!-- =========================
+                 BUTTON
+            ========================== -->
+
+            <div class="button">
+
+                <button
+                    type="submit"
+                    class="btn-proses"
+                >
+                    🚀 Proses Data
+                </button>
+
+
+                <button
+                    type="reset"
+                    class="btn-reset"
+                    id="resetBtn"
+                >
+                    🔄 Reset
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+        <!-- =========================
+             HASIL
+        ========================== -->
+
+        <div id="hasil">
+
+            <h2>✅ Data Berhasil Diproses</h2>
+
+            <div class="data">
+
+                <p>
+                    <b>NPM:</b>
+                    <span id="hasilNpm"></span>
+                </p>
+
+                <p>
+                    <b>Nama:</b>
+                    <span id="hasilNama"></span>
+                </p>
+
+                <p>
+                    <b>Alamat:</b>
+                    <span id="hasilAlamat"></span>
+                </p>
+
+                <p>
+                    <b>Jenis Kelamin:</b>
+                    <span id="hasilSex"></span>
+                </p>
+
+                <p>
+                    <b>Jenjang:</b>
+                    <span id="hasilJenjang"></span>
+                </p>
+
+                <p>
+                    <b>Konsentrasi:</b>
+                    <span id="hasilKonsentrasi"></span>
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        Formulir Biodata Mahasiswa © 2026
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+    const form = document.getElementById("biodataForm");
+
+    const hasil = document.getElementById("hasil");
+
+
+    form.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        // Mengambil data
+
+        const npm =
+            document.getElementById("npm").value;
+
+        const nama =
+            document.getElementById("nama").value;
+
+        const alamat =
+            document.getElementById("alamat").value;
+
+        const sex =
+            document.getElementById("sex").value;
+
+
+        // Mengambil radio button
+
+        const jenjangDipilih =
+            document.querySelector(
+                'input[name="jenjang"]:checked'
+            );
+
+
+        const jenjang =
+            jenjangDipilih
+            ? jenjangDipilih.value
+            : "Belum dipilih";
+
+
+        // Mengambil checkbox
+
+        const checkbox =
+            document.querySelectorAll(
+                'input[name="konsentrasi"]:checked'
+            );
+
+
+        let konsentrasi = [];
+
+
+        checkbox.forEach(function(item) {
+
+            konsentrasi.push(item.value);
+
+        });
+
+
+        if (konsentrasi.length === 0) {
+
+            konsentrasi = ["Belum dipilih"];
+
+        }
+
+
+        // Menampilkan data
+
+        document.getElementById("hasilNpm").textContent =
+            npm || "Belum diisi";
+
+        document.getElementById("hasilNama").textContent =
+            nama || "Belum diisi";
+
+        document.getElementById("hasilAlamat").textContent =
+            alamat || "Belum diisi";
+
+        document.getElementById("hasilSex").textContent =
+            sex || "Belum dipilih";
+
+        document.getElementById("hasilJenjang").textContent =
+            jenjang;
+
+        document.getElementById("hasilKonsentrasi").textContent =
+            konsentrasi.join(", ");
+
+
+        // Menampilkan kotak hasil
+
+        hasil.style.display = "block";
+
+
+        // Scroll otomatis ke hasil
+
+        hasil.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    });
+
+
+    // Tombol reset
+
+    document.getElementById("resetBtn")
+        .addEventListener("click", function() {
+
+            setTimeout(function() {
+
+                hasil.style.display = "none";
+
+            }, 100);
+
+        });
+
+</script>
+
+
+</body>
+
+</html>
+```
